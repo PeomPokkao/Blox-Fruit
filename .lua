@@ -58,109 +58,145 @@ Section1:NewToggle("AuToFarm", "Start?", function(v)
             NameQ = "BanditQuest1"
             NumberQ = 1
             CFrameQ = CFrame.new(1060.4088134765625, 16.516624450683594, 1546.447998046875)
+            CFrameQBM = CFrame.new()
             return true
         elseif Level == 10 or Level == 14 then -- Monkey
             Mon = "Monkey [Lv. 14]"
             NameQ = "JungleQuest"
             NumberQ = 1
             CFrameQ = CFrame.new(-1599.4271240234375, 36.85212707519531, 153.33627319335938)
+            CFrameQBM = CFrame.new()
             return true
         elseif Level == 15 or Level == 29 then -- Gorilla
             Mon = "Gorilla [Lv. 20]"
             NameQ = "JungleQuest"
             NumberQ = 2
             CFrameQ = CFrame.new(-1599.4271240234375, 36.85212707519531, 153.33627319335938)
+            CFrameQBM = CFrame.new()
             return true
         elseif Level == 30 or Level == 39 then -- Pirate
             Mon = "Pirate [Lv. 35]"
             NameQ = "BuggyQuest1"
             NumberQ = 1
             CFrameQ = CFrame.new(-1140.73046875, 4.752050399780273, 3829.33447265625)
+            CFrameQBM = CFrame.new()
             return true
         elseif Level == 40 or Level == 59 then
             Mon = "Brute [Lv. 45]"
             NameQ = "BuggyQuest1"
             NumberQ = 2
             CFrameQ = CFrame.new(-1140.73046875, 4.752050399780273, 3829.33447265625)
+            CFrameQBM = CFrame.new()
             return true
         elseif Level == 60 or Level == 74 then
             Mon = "Desert Bandit [Lv. 60]"
             NameQ = "DesertQuest"
             NumberQ = 1
             CFrameQ = CFrame.new(896.5406494140625, 6.438462734222412, 4390.4765625)
+            CFrameQBM = CFrame.new()
             return true
         elseif Level == 75 or Level == 89 then
             Mon = "Desert Officer [Lv. 70]"
             NameQ = "DesertQuest"
             NumberQ = 2
             CFrameQ = CFrame.new(896.5406494140625, 6.438462734222412, 4390.4765625)
+            CFrameQBM = CFrame.new()
             return true
         elseif Level == 90 or Level == 99 then
             Mon = "Snow Bandit [Lv. 90]"
             NameQ = "SnowQuest"
             NumberQ = 1
             CFrameQ = CFrame.new(1388.0137939453125, 87.27276611328125, -1298.484375)
+            CFrameQBM = CFrame.new()
             return true
         elseif Level == 100 or Level == 119 then
             Mon = "Snowman [Lv. 100]"
             NameQ = "SnowQuest"
             NumberQ = 2
             CFrameQ = CFrame.new(1388.0137939453125, 87.27276611328125, -1298.484375)
+            CFrameQBM = CFrame.new()
             return true
         elseif Level == 120 or Level == 149 then
             Mon = "Chief Petty Officer [Lv. 120]"
             NameQ = "MarineQuest2"
             NumberQ = 1
             CFrameQ = CFrame.new(-5038.15966796875, 28.65203285217285, 4325.3427734375)
+            CFrameQBM = CFrame.new()
             return true
         elseif Level == 150 or Level == 174 then
             Mon = "Sky Bandit [Lv. 150]"
             NameQ = "SkyQuest"
             NumberQ = 1
             CFrameQ = CFrame.new(-4840.48876953125, 717.66943359375, -2620.824951171875)
+            CFrameQBM = CFrame.new()
             return true
         elseif Level == 175 or Level == 189 then
             Mon = "Dark Master [Lv. 175]"
             NameQ = "SkyQuest"
             NumberQ = 2
             CFrameQ = CFrame.new(-4840.48876953125, 717.66943359375, -2620.824951171875)
+            CFrameQBM = CFrame.new()
             return true
         elseif Level == 190 or Level == 209 then
             Mon = "Prisoner [Lv. 190]"
             NameQ = "PrisonerQuest"
             NumberQ = 1
             CFrameQ = CFrame.new(5308.328125, 1.655163049697876, 475.0945129394531)
+            CFrameQBM = CFrame.new()
             return true
         elseif Level == 210 or Level == 249 then
             Mon = "Dangerous Prisoner [Lv. 210]"
             NameQ = "PrisonerQuest"
             NumberQ = 2
             CFrameQ = CFrame.new(5308.328125, 1.655163049697876, 475.0945129394531)
+            CFrameQBM = CFrame.new()
             return true
         end
         return false
     end
     
     spawn(function()
-        while wait() do
-            CheckLevel()
-            if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false then
-                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1060.2091064453125, 16.455074310302734, 1547.498046875)
-                wait()
-                game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StartQuest",NameQ,NumberQ)
-            elseif game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == true then
-                for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
-                    if v.Name == Mon then
-                        repeat wait()
-                            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame * CFrame.new(0,30,0)
-                        until _G.AUTOFARM == false or v.Humanoid.Health <= 0 or game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false
+        pcall(function()
+            while wait() do
+                CheckLevel()
+                if _G.AUTOFARM then
+                    if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false then
+                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1060.2091064453125, 16.455074310302734, 1547.498046875)
+                        wait()
+                        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(StartQuest,NameQ,NumberQ)
+                    elseif game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == true then
+                        for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                            if v.Name == Mon then
+                                repeat wait()
+                                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame * CFrame.new(0,30,0)
+                                until _G.AUTOFARM == false or v.Humanoid.Health <= 0 or game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false
+                            end
+                        end
                     end
                 end
             end
-        end
-    end)
-      
+        end) 
+    end)    
 
+    spawn(function()
+        local monsterName = Mon
+        local targetPosition = CFrame.new(CFrameQBM) -- เปลี่ยนเป็นตำแหน่งที่ต้องการ
+        
+        pcall(function()
+            while wait() do
+                if _G.AUTOFARM then
+                    for i, monster in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                        if monster.Name == monsterName then
+                            repeat wait()
+                                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = monster.HumanoidRootPart.CFrame
+                            until not _G.AUTOFARM or monster.Humanoid.Health <= 0 or not game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible
+                        end
+                    end
+                end
+            end
+        end)
+    end)    
+    
 _G.RandomCFrame = 0
 
 spawn(function()
