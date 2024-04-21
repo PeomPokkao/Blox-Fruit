@@ -51,122 +51,118 @@ Section1:NewToggle("AuToFarm", "Start?", function(v)
 
     _G.AUTOFARM = v
 
-function CheckLevel()
-    local Level = game:GetService("Players").LocalPlayer.Data.Level.Value
-    if Level == 1 or Level <= 9 then -- Bandit
-        Mon = "Bandit [Lv. 5]"
-        NameQ = "BanditQuest1"
-        NumberQ = 1
-        CFrameQ = CFrame.new(1060.4088134765625, 16.516624450683594, 1546.447998046875)
-        return true
-    elseif Level == 10 or Level <= 14 then -- Monkey
-        Mon = "Monkey [Lv. 14]"
-        NameQ = "JungleQuest"
-        NumberQ = 1
-        CFrameQ = CFrame.new(-1599.4271240234375, 36.85212707519531, 153.33627319335938)
-        return true
-    elseif Level == 15 or Level <= 29 then -- Gorilla
-        Mon = "Gorilla [Lv. 20]"
-        NameQ = "JungleQuest"
-        NumberQ = 2
-        CFrameQ = CFrame.new(-1599.4271240234375, 36.85212707519531, 153.33627319335938)
-        return true
-    elseif Level == 30 or Level <= 39 then -- Pirate
-        Mon = "Pirate [Lv. 35]"
-        NameQ = "BuggyQuest1"
-        NumberQ = 1
-        CFrameQ = CFrame.new(-1140.73046875, 4.752050399780273, 3829.33447265625)
-        return true
-    elseif Level == 40 or Level <= 59 then
-        Mon = "Brute [Lv. 45]"
-        NameQ = "BuggyQuest1"
-        NumberQ = 2
-        CFrameQ = CFrame.new(-1140.73046875, 4.752050399780273, 3829.33447265625)
-        return true
-    elseif Level == 60 or Level <= 74 then
-        Mon = "Desert Bandit [Lv. 60]"
-        NameQ = "DesertQuest"
-        NumberQ = 1
-        CFrameQ = CFrame.new(896.5406494140625, 6.438462734222412, 4390.4765625)
-        return true
-    elseif Level == 75 or Level <= 89 then
-        Mon = "Desert Officer [Lv. 70]"
-        NameQ = "DesertQuest"
-        NumberQ = 2
-        CFrameQ = CFrame.new(896.5406494140625, 6.438462734222412, 4390.4765625)
-        return true
-    elseif Level == 90 or Level <= 99 then
-        Mon = "Snow Bandit [Lv. 90]"
-        NameQ = "SnowQuest"
-        NumberQ = 1
-        CFrameQ = CFrame.new(1388.0137939453125, 87.27276611328125, -1298.484375)
-        return true
-    elseif Level == 100 or Level <= 119 then
-        Mon = "Snowman [Lv. 100]"
-        NameQ = "SnowQuest"
-        NumberQ = 2
-        CFrameQ = CFrame.new(1388.0137939453125, 87.27276611328125, -1298.484375)
-        return true
-    elseif Level == 120 or Level <= 149 then
-        Mon = "Chief Petty Officer [Lv. 120]"
-        NameQ = "MarineQuest2"
-        NumberQ = 1
-        CFrameQ = CFrame.new(-5038.15966796875, 28.65203285217285, 4325.3427734375)
-        return true
-    elseif Level == 150 or Level <= 174 then
-        Mon = "Sky Bandit [Lv. 150]"
-        NameQ = "SkyQuest"
-        NumberQ = 1
-        CFrameQ = CFrame.new(-4840.48876953125, 717.66943359375, -2620.824951171875)
-        return true
-    elseif Level == 175 or Level <= 189 then
-        Mon = "Dark Master [Lv. 175]"
-        NameQ = "SkyQuest"
-        NumberQ = 2
-        CFrameQ = CFrame.new(-4840.48876953125, 717.66943359375, -2620.824951171875)
-        return true
-    elseif Level == 190 or Level <= 209 then
-        Mon = "Prisoner [Lv. 190]"
-        NameQ = "PrisonerQuest"
-        NumberQ = 1
-        CFrameQ = CFrame.new(5308.328125, 1.655163049697876, 475.0945129394531)
-        return true
-    elseif Level == 210 or Level <= 249 then
-        Mon = "Dangerous Prisoner [Lv. 210]"
-        NameQ = "PrisonerQuest"
-        NumberQ = 2
-        CFrameQ = CFrame.new(5308.328125, 1.655163049697876, 475.0945129394531)
-        return true
+    function CheckLevel()
+        local Level = game:GetService("Players").LocalPlayer.Data.Level.Value
+        if Level == 1 or Level <= 9 then -- Bandit
+            Mon = "Bandit [Lv. 5]"
+            NameQ = "BanditQuest1"
+            NumberQ = 1
+            CFrameQ = CFrame.new(1060.4088134765625, 16.516624450683594, 1546.447998046875)
+            return true
+        elseif Level == 10 or Level <= 14 then -- Monkey
+            Mon = "Monkey [Lv. 14]"
+            NameQ = "JungleQuest"
+            NumberQ = 1
+            CFrameQ = CFrame.new(-1599.4271240234375, 36.85212707519531, 153.33627319335938)
+            return true
+        elseif Level == 15 or Level <= 29 then -- Gorilla
+            Mon = "Gorilla [Lv. 20]"
+            NameQ = "JungleQuest"
+            NumberQ = 2
+            CFrameQ = CFrame.new(-1599.4271240234375, 36.85212707519531, 153.33627319335938)
+            return true
+        elseif Level == 30 or Level <= 39 then -- Pirate
+            Mon = "Pirate [Lv. 35]"
+            NameQ = "BuggyQuest1"
+            NumberQ = 1
+            CFrameQ = CFrame.new(-1140.73046875, 4.752050399780273, 3829.33447265625)
+            return true
+        elseif Level == 40 or Level <= 59 then
+            Mon = "Brute [Lv. 45]"
+            NameQ = "BuggyQuest1"
+            NumberQ = 2
+            CFrameQ = CFrame.new(-1140.73046875, 4.752050399780273, 3829.33447265625)
+            return true
+        elseif Level == 60 or Level <= 74 then
+            Mon = "Desert Bandit [Lv. 60]"
+            NameQ = "DesertQuest"
+            NumberQ = 1
+            CFrameQ = CFrame.new(896.5406494140625, 6.438462734222412, 4390.4765625)
+            return true
+        elseif Level == 75 or Level <= 89 then
+            Mon = "Desert Officer [Lv. 70]"
+            NameQ = "DesertQuest"
+            NumberQ = 2
+            CFrameQ = CFrame.new(896.5406494140625, 6.438462734222412, 4390.4765625)
+            return true
+        elseif Level == 90 or Level <= 99 then
+            Mon = "Snow Bandit [Lv. 90]"
+            NameQ = "SnowQuest"
+            NumberQ = 1
+            CFrameQ = CFrame.new(1388.0137939453125, 87.27276611328125, -1298.484375)
+            return true
+        elseif Level == 100 or Level <= 119 then
+            Mon = "Snowman [Lv. 100]"
+            NameQ = "SnowQuest"
+            NumberQ = 2
+            CFrameQ = CFrame.new(1388.0137939453125, 87.27276611328125, -1298.484375)
+            return true
+        elseif Level == 120 or Level <= 149 then
+            Mon = "Chief Petty Officer [Lv. 120]"
+            NameQ = "MarineQuest2"
+            NumberQ = 1
+            CFrameQ = CFrame.new(-5038.15966796875, 28.65203285217285, 4325.3427734375)
+            return true
+        elseif Level == 150 or Level <= 174 then
+            Mon = "Sky Bandit [Lv. 150]"
+            NameQ = "SkyQuest"
+            NumberQ = 1
+            CFrameQ = CFrame.new(-4840.48876953125, 717.66943359375, -2620.824951171875)
+            return true
+        elseif Level == 175 or Level <= 189 then
+            Mon = "Dark Master [Lv. 175]"
+            NameQ = "SkyQuest"
+            NumberQ = 2
+            CFrameQ = CFrame.new(-4840.48876953125, 717.66943359375, -2620.824951171875)
+            return true
+        elseif Level == 190 or Level <= 209 then
+            Mon = "Prisoner [Lv. 190]"
+            NameQ = "PrisonerQuest"
+            NumberQ = 1
+            CFrameQ = CFrame.new(5308.328125, 1.655163049697876, 475.0945129394531)
+            return true
+        elseif Level == 210 or Level <= 249 then
+            Mon = "Dangerous Prisoner [Lv. 210]"
+            NameQ = "PrisonerQuest"
+            NumberQ = 2
+            CFrameQ = CFrame.new(5308.328125, 1.655163049697876, 475.0945129394531)
+            return true
+        end
+        return false
     end
-    return false
-end
-
-spawn(function()
-    while wait() do
+    
+    spawn(function()
         if _G.AUTOFARM then
-            pcall(function()
-                local checked = CheckLevel()
-                if checked then
-                    if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false then
-                        TP(CFrameQ)
-                        wait()
-                        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(StartQuest,NameQ,NumberQ)
-                    elseif game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == true then
-                        for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
-                            if v.Name == Mon then
-                                repeat wait()
-                                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame * CFrame.new(0,30,0)
-                                until _G.AUTOFARM == false or v.Humanoid.Health <= 0 or game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false
-                            end
+            while wait() do
+                CheckLevel()
+                if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false then
+                    TP(CFrame.new(CFrameQ))
+                    wait() -- รอสักครู่หลังจากเปลี่ยนตำแหน่งเพื่อลดการสั่น
+                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(StartQuest,NameQ,NumberQ)
+                elseif game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == true then
+                    for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
+                        if v.Name == Mon then
+                            repeat wait()
+                                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.HumanoidRootPart.CFrame * CFrame.new(0,30,0)
+                            until _G.AUTOFARM == false or v.Humanoid.Health <= 0 or game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false
                         end
                     end
                 end
-            end)
+            end
         end
-    end
-end)
+    end)    
 
-RandomCFrame = 0
+_G.RandomCFrame = 0
 
 spawn(function()
     while wait() do
@@ -174,20 +170,20 @@ spawn(function()
             repeat
                 wait()
 
-                if RandomCFrame <= 1 then
+                if _G.RandomCFrame <= 1 then
                     TP(v.HumanoidRootPart.CFrame * CFrame.new(0,20,50))
-                elseif RandomCFrame <= 2 then
+                elseif _G.RandomCFrame <= 2 then
                     TP(v.HumanoidRootPart.CFrame * CFrame.new(50,20,0))
-                elseif RandomCFrame <= 3 then
-                    TP(v.HumanoidRootPart.CFrame * CFrame.new(0,20,-50))
-                elseif RandomCFrame <= 4 then
+                elseif _G.RandomCFrame <= 3 then
+                    TP(v.HumanoidRootPart.CFrame * CFrame.new   (0,20,-50))
+                elseif _G.RandomCFrame <= 4 then
                     TP(v.HumanoidRootPart.CFrame * CFrame.new(-50,20,0))
-                elseif RandomCFrame <= 5 then
+                elseif _G.RandomCFrame <= 5 then
                     TP(v.HumanoidRootPart.CFrame * CFrame.new(0,30,0))
-                    RandomCFrame = 0
+                    _G.RandomCFrame = 0
                 end
 
-                RandomCFrame = RandomCFrame + 0.1
+                _G.RandomCFrame = _G.RandomCFrame + 0.1
             until _G.AUTOFARM == false
         end
     end
@@ -517,18 +513,18 @@ Section1:NewToggle("Part Neon", "Start?", function(s)
 end)
 
 spawn(function()
-    game:GetService("RunService").Heartbeat:Connect(function()
-        if _G.PartNeon then
-            if not game.Workspace:FindFirstChild("LOL") then
-                local PartNeon = Instance.new("Part")
-                PartNeon.Name = "LOL"
-                PartNeon.Parent = game.Workspace
-                PartNeon.Anchored = true
-                PartNeon.Transparency = 0
-                PartNeon.Size = Vector3.new(30, 0.5, 30)
-                PartNeon.Material = "Neon"
+    pcall(function()
+        game:GetService("RunService").Heartbeat:Connect(function()
+            if _G.PartNeon then
+                if not game.Workspace:FindFirstChild("LOL") then
+                    local Paertaiteen = Instance.new("Part")
+                    Paertaiteen.Name = "LOL"
+                    Paertaiteen.Parent = game.Workspace
+                    Paertaiteen.Anchored = true
+                    Paertaiteen.Transparency = 0
+                    Paertaiteen.Size = Vector3.new(30, 0.5, 30)
+                    Paertaiteen.Material = "Neon"
 
-                while wait() do
                     local colors = {
                         Color3.fromRGB(255, 0, 0),
                         Color3.fromRGB(255, 155, 0),
@@ -540,19 +536,31 @@ spawn(function()
                         Color3.fromRGB(255, 0, 155)
                     }
 
-                    for i, color in ipairs(colors) do
-                        game:GetService('TweenService'):Create(PartNeon, TweenInfo.new(1, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut), {Color = color}):Play()
+                    local index = 1
+
+                    while true do
+                        wait(0.1)
+                        game:GetService('TweenService'):Create(
+                            Paertaiteen,
+                            TweenInfo.new(1, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut),
+                            {Color = colors[index]}
+                        ):Play()
+
+                        index = index % #colors + 1
                         wait(0.5)
                     end
+                else
+                    game.Workspace.LOL.CFrame = CFrame.new(game.Players.LocalPlayer.Character.HumanoidRootPart.Position.X, game.Players.LocalPlayer.Character.HumanoidRootPart.Position.Y - 3.92, game.Players.LocalPlayer.Character.HumanoidRootPart.Position.Z)
                 end
             else
-                game.Workspace["LOL"].CFrame = CFrame.new(game.Players.LocalPlayer.Character.HumanoidRootPart.Position.X, game.Players.LocalPlayer.Character.HumanoidRootPart.Position.Y - 3.92, game.Players.LocalPlayer.Character.HumanoidRootPart.Position.Z)
+                if _G.PartNeon == false then
+                    local lol = game.Workspace:FindFirstChild("LOL")
+                    if lol then
+                        lol:Destroy()
+                    end
+                end
             end
-        else
-            if game.Workspace:FindFirstChild("LOL") then
-                game.Workspace:FindFirstChild("LOL"):Destroy()
-            end
-        end
+        end)
     end)
 end)
 
@@ -739,6 +747,64 @@ elseif id == 7449423635 then
     end)
 
 end
+
+Section2:NewToggle("Part Neon", "Start?", function(s)
+
+    _G.PartNeon2 = s
+
+end)
+
+spawn(function()
+    pcall(function()
+        game:GetService("RunService").Heartbeat:Connect(function()
+            if _G.PartNeon2 then
+                if not game.Workspace:FindFirstChild("LOL") then
+                    local Paertaiteen = Instance.new("Part")
+                    Paertaiteen.Name = "LOL"
+                    Paertaiteen.Parent = game.Workspace
+                    Paertaiteen.Anchored = true
+                    Paertaiteen.Transparency = 0
+                    Paertaiteen.Size = Vector3.new(30, 0.5, 30)
+                    Paertaiteen.Material = "Neon"
+
+                    local colors = {
+                        Color3.fromRGB(255, 0, 0),
+                        Color3.fromRGB(255, 155, 0),
+                        Color3.fromRGB(255, 255, 0),
+                        Color3.fromRGB(0, 255, 0),
+                        Color3.fromRGB(0, 255, 255),
+                        Color3.fromRGB(0, 155, 255),
+                        Color3.fromRGB(255, 0, 255),
+                        Color3.fromRGB(255, 0, 155)
+                    }
+
+                    local index = 1
+
+                    while true do
+                        wait(0.1)
+                        game:GetService('TweenService'):Create(
+                            Paertaiteen,
+                            TweenInfo.new(1, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut),
+                            {Color = colors[index]}
+                        ):Play()
+
+                        index = index % #colors + 1
+                        wait(0.5)
+                    end
+                else
+                    game.Workspace.LOL.CFrame = CFrame.new(game.Players.LocalPlayer.Character.HumanoidRootPart.Position.X, game.Players.LocalPlayer.Character.HumanoidRootPart.Position.Y - 3.92, game.Players.LocalPlayer.Character.HumanoidRootPart.Position.Z)
+                end
+            else
+                if _G.PartNeon2 == false then
+                    local lol = game.Workspace:FindFirstChild("LOL")
+                    if lol then
+                        lol:Destroy()
+                    end
+                end
+            end
+        end)
+    end)
+end)
 
 Section1:NewDropdown("Select Upstats", "Select", {"Melee", "Defense", "Sword", "Gun", "Fruit"}, function(t)
     _G.stats = t
