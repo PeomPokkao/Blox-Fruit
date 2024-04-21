@@ -829,3 +829,17 @@ end
 
 -- เรียกใช้งานฟังก์ชัน autoclick
 autoclick()
+
+local UserInputService = game:GetService("UserInputService")
+
+-- ฟังก์ชันสำหรับลดการสั่นของจอ
+local function ReduceScreenShake()
+    local camera = game.Workspace.CurrentCamera
+    if camera then
+        camera.CameraType = Enum.CameraType.Scriptable
+        camera.FieldOfView = 70
+        camera.Focus = CFrame.new(Vector3.new(0, 0, 0))
+    end
+end
+
+ReduceScreenShake() -- เรียกใช้ฟังก์ชันเพื่อลดการสั่นของจอ
