@@ -6,21 +6,26 @@ end
 
 local id = game.PlaceId
 
-function TP(Pos)
-    local Distance = (Pos.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
+function TP(P1)
+    local Distance = (P1.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
     local Speed
-    if Distance < 360 then
-        Speed = 50 -- ลดความเร็วเพื่อให้มีการเคลื่อนที่ช้าลงเมื่อระยะทางสั้น
-    elseif Distance < 1000 then
-        Speed = 100 -- ปรับความเร็วให้เหมาะสมกับระยะทาง
-    elseif Distance >= 1000 then
-        Speed = 200 -- เพิ่มความเร็วให้มากขึ้นเมื่อระยะทางยาว
+    if Distance < 1000 then
+        Speed = 300
+    elseif Distance >= 100 then
+        Speed = 200
     end
-    game:GetService("TweenService"):Create(
+    
+    local Tween = game:GetService("TweenService"):Create(
         game.Players.LocalPlayer.Character.HumanoidRootPart,
-        TweenInfo.new(Distance/(Speed*5), Enum.EasingStyle.Linear), -- เพิ่มความช้าเป็น 5 เท่า
-        {CFrame = Pos}
-    ):Play()
+        TweenInfo.new(Distance/Speed, Enum.EasingStyle.Linear),
+        {CFrame = P1}
+    )
+    
+    Tween:Play()
+    
+    if _G.Stop_Tween then
+        Tween:Cancel()
+    end
 end
 
 game.StarterGui:SetCore("SendNotification", {
