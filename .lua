@@ -265,7 +265,13 @@ spawn(function()
                     local character = game.Players.LocalPlayer.Character
                     local humanoidRootPart = character and character:FindFirstChild("HumanoidRootPart")
                     if humanoidRootPart then
-                        game.Workspace.LOL.CFrame = CFrame.new(humanoidRootPart.Position.X, humanoidRootPart.Position.Y - 3.92, humanoidRootPart.Position.Z)
+                        local footPosition = humanoidRootPart.Position + Vector3.new(0, -1.5, 0) -- ตำแหน่งของเท้าเมื่อไม่ลอย
+                        local ray = Ray.new(humanoidRootPart.Position, Vector3.new(0, -3, 0) * 100) -- Raycasting ลงสู่พื้น
+                        local hit, position, normal = game.Workspace:FindPartOnRayWithIgnoreList(ray, {Paertaiteen})
+                        if hit then
+                            footPosition = position -- ตำแหน่งของเท้าเมื่อลอย
+                        end
+                        game.Workspace.LOL.CFrame = CFrame.new(footPosition)
                     end
                 end
             else
@@ -279,6 +285,7 @@ spawn(function()
         end)
     end)
 end)
+
 
 
 getgenv().BringMobs = function(F, z)
@@ -563,7 +570,6 @@ spawn(function()
                     Paertaiteen.Transparency = 0
                     Paertaiteen.Size = Vector3.new(30, 0.5, 30)
                     Paertaiteen.Material = "Neon"
-                    Paertaiteen.AnchoredPosition = Vector3.new(0, 0.5, 0) -- ตำแหน่งเริ่มต้นของเก้าอี้
 
                     local colors = {
                         Color3.fromRGB(255, 0, 0),
@@ -593,7 +599,13 @@ spawn(function()
                     local character = game.Players.LocalPlayer.Character
                     local humanoidRootPart = character and character:FindFirstChild("HumanoidRootPart")
                     if humanoidRootPart then
-                        game.Workspace.LOL.AnchoredPosition = Vector3.new(humanoidRootPart.Position.X, humanoidRootPart.Position.Y - 3.92, humanoidRootPart.Position.Z)
+                        local footPosition = humanoidRootPart.Position + Vector3.new(0, -1.5, 0) -- ตำแหน่งของเท้าเมื่อไม่ลอย
+                        local ray = Ray.new(humanoidRootPart.Position, Vector3.new(0, -3, 0) * 100) -- Raycasting ลงสู่พื้น
+                        local hit, position, normal = game.Workspace:FindPartOnRayWithIgnoreList(ray, {Paertaiteen})
+                        if hit then
+                            footPosition = position -- ตำแหน่งของเท้าเมื่อลอย
+                        end
+                        game.Workspace.LOL.CFrame = CFrame.new(footPosition)
                     end
                 end
             else
@@ -607,6 +619,7 @@ spawn(function()
         end)
     end)
 end)
+
 
 
 
@@ -812,7 +825,6 @@ spawn(function()
                     Paertaiteen.Transparency = 0
                     Paertaiteen.Size = Vector3.new(30, 0.5, 30)
                     Paertaiteen.Material = "Neon"
-                    Paertaiteen.AnchoredPosition = Vector3.new(0, 0.5, 0) -- ตำแหน่งเริ่มต้นของเก้าอี้
 
                     local colors = {
                         Color3.fromRGB(255, 0, 0),
@@ -842,7 +854,13 @@ spawn(function()
                     local character = game.Players.LocalPlayer.Character
                     local humanoidRootPart = character and character:FindFirstChild("HumanoidRootPart")
                     if humanoidRootPart then
-                        game.Workspace.LOL.AnchoredPosition = Vector3.new(humanoidRootPart.Position.X, humanoidRootPart.Position.Y - 3.92, humanoidRootPart.Position.Z)
+                        local footPosition = humanoidRootPart.Position + Vector3.new(0, -1.5, 0) -- ตำแหน่งของเท้าเมื่อไม่ลอย
+                        local ray = Ray.new(humanoidRootPart.Position, Vector3.new(0, -3, 0) * 100) -- Raycasting ลงสู่พื้น
+                        local hit, position, normal = game.Workspace:FindPartOnRayWithIgnoreList(ray, {Paertaiteen})
+                        if hit then
+                            footPosition = position -- ตำแหน่งของเท้าเมื่อลอย
+                        end
+                        game.Workspace.LOL.CFrame = CFrame.new(footPosition)
                     end
                 end
             else
@@ -856,6 +874,7 @@ spawn(function()
         end)
     end)
 end)
+
 
 
 
