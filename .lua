@@ -563,6 +563,7 @@ spawn(function()
                     Paertaiteen.Transparency = 0
                     Paertaiteen.Size = Vector3.new(30, 0.5, 30)
                     Paertaiteen.Material = "Neon"
+                    Paertaiteen.AnchoredPosition = Vector3.new(0, 0.5, 0) -- ตำแหน่งเริ่มต้นของเก้าอี้
 
                     local colors = {
                         Color3.fromRGB(255, 0, 0),
@@ -592,7 +593,7 @@ spawn(function()
                     local character = game.Players.LocalPlayer.Character
                     local humanoidRootPart = character and character:FindFirstChild("HumanoidRootPart")
                     if humanoidRootPart then
-                        game.Workspace.LOL.CFrame = CFrame.new(humanoidRootPart.Position.X, humanoidRootPart.Position.Y - 3.92, humanoidRootPart.Position.Z)
+                        game.Workspace.LOL.AnchoredPosition = Vector3.new(humanoidRootPart.Position.X, humanoidRootPart.Position.Y - 3.92, humanoidRootPart.Position.Z)
                     end
                 end
             else
@@ -606,6 +607,7 @@ spawn(function()
         end)
     end)
 end)
+
 
 
 if id == 2753915549 then
@@ -810,6 +812,7 @@ spawn(function()
                     Paertaiteen.Transparency = 0
                     Paertaiteen.Size = Vector3.new(30, 0.5, 30)
                     Paertaiteen.Material = "Neon"
+                    Paertaiteen.AnchoredPosition = Vector3.new(0, 0.5, 0) -- ตำแหน่งเริ่มต้นของเก้าอี้
 
                     local colors = {
                         Color3.fromRGB(255, 0, 0),
@@ -839,7 +842,7 @@ spawn(function()
                     local character = game.Players.LocalPlayer.Character
                     local humanoidRootPart = character and character:FindFirstChild("HumanoidRootPart")
                     if humanoidRootPart then
-                        game.Workspace.LOL.CFrame = CFrame.new(humanoidRootPart.Position.X, humanoidRootPart.Position.Y - 3.92, humanoidRootPart.Position.Z)
+                        game.Workspace.LOL.AnchoredPosition = Vector3.new(humanoidRootPart.Position.X, humanoidRootPart.Position.Y - 3.92, humanoidRootPart.Position.Z)
                     end
                 end
             else
@@ -853,6 +856,7 @@ spawn(function()
         end)
     end)
 end)
+
 
 
 Section1:NewDropdown("Select Upstats", "Select", {"Melee", "Defense", "Sword", "Gun", "Fruit"}, function(t)
