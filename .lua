@@ -32,7 +32,6 @@ game.StarterGui:SetCore("SendNotification", {
     Icon = "rbxassetid://11915607895"; -- ใส่หน้าพ่อมึงมึง
     Title = "Upper Cut Hub", 
     Text = "loading",
-    wait(10)
 })
 
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
@@ -815,11 +814,18 @@ Section1:NewToggle("Upstats", "Start?", function(state)
 
 end)
 
-function Attack()
-    pcall(function()
-        while wait() do
-            game:GetService'VirtualUser':CaptureController()
-            game:GetService'VirtualUser':Button1Down(Vector2.new(1280, 672))
-        end
-    end)
+-- กำหนดค่าสำหรับกำหนดความถี่ของการคลิก (ครั้งต่อวินาที)
+local clickFrequency = 100  -- กำหนดความถี่ที่ต้องการ ตัวอย่างเช่น 10 คือ 10 ครั้งต่อวินาที
+
+-- ฟังก์ชันที่จะทำการคลิก
+local function autoclick()
+    while true do
+        wait(0.01) -- รอเวลาตามความถี่ที่ตั้งไว้
+        game:GetService("VirtualUser"):CaptureController()
+        game:GetService("VirtualUser"):Button1Down(Vector2.new(1280, 672)) -- สำหรับคลิกที่ตำแหน่งนี้
+        game:GetService("VirtualUser"):Button1Up(Vector2.new(1280, 672)) -- ปล่อยปุ่ม
+    end
 end
+
+-- เรียกใช้งานฟังก์ชัน autoclick
+autoclick()
