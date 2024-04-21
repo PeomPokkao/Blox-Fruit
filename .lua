@@ -9,10 +9,10 @@ local id = game.PlaceId
 function TP(P1)
     local Distance = (P1.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
     local Speed
-    if Distance < 1000 then
-        Speed = 300
+    if Distance < 100 then
+        Speed = 100
     elseif Distance >= 100 then
-        Speed = 200
+        Speed = 100
     end
     
     local Tween = game:GetService("TweenService"):Create(
