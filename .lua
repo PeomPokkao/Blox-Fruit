@@ -32,6 +32,7 @@ game.StarterGui:SetCore("SendNotification", {
     Icon = "rbxassetid://11915607895"; -- ใส่หน้าพ่อมึงมึง
     Title = "Upper Cut Hub", 
     Text = "loading",
+    wait(10)
 })
 
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
