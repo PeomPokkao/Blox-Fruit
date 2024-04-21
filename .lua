@@ -10,15 +10,15 @@ function TP(Pos)
     local Distance = (Pos.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
     local Speed
     if Distance < 360 then
-        Speed = 250 -- ลดความเร็วเพื่อให้มีการเคลื่อนที่ช้าลงเมื่อระยะทางสั้น
+        Speed = 50 -- ลดความเร็วเพื่อให้มีการเคลื่อนที่ช้าลงเมื่อระยะทางสั้น
     elseif Distance < 1000 then
-        Speed = 500 -- ปรับความเร็วให้เหมาะสมกับระยะทาง
+        Speed = 100 -- ปรับความเร็วให้เหมาะสมกับระยะทาง
     elseif Distance >= 1000 then
-        Speed = 1000 -- เพิ่มความเร็วให้มากขึ้นเมื่อระยะทางยาว
+        Speed = 200 -- เพิ่มความเร็วให้มากขึ้นเมื่อระยะทางยาว
     end
     game:GetService("TweenService"):Create(
         game.Players.LocalPlayer.Character.HumanoidRootPart,
-        TweenInfo.new(Distance/Speed, Enum.EasingStyle.Linear),
+        TweenInfo.new(Distance/(Speed*5), Enum.EasingStyle.Linear), -- เพิ่มความช้าเป็น 5 เท่า
         {CFrame = Pos}
     ):Play()
 end
