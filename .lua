@@ -38,8 +38,10 @@ local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHept
 local Window = Library.CreateLib("UPPERCUT HUB", "Sentinel")
 local Tab1 = Window:NewTab("General")
 local Tab2 = Window:NewTab("Teleport")
+local Tab3 = Window:NewTab("Misc")
 local Section1 = Tab1:NewSection("Main")
 local Section2 = Tab2:NewSection("Teleport")
+local Section3 = Tab3:NewSection("Visual")
 
 Section1:NewButton("RedeemCodeX2", "Click?", function()
     print("Clicked")
@@ -731,3 +733,83 @@ elseif id == 7449423635 then
     end)
 
 end
+
+Section1:NewDropdown("Select Upstats", "Select", {"Melee", "Defense", "Sword", "Gun", "Fruit"}, function(t)
+    _G.stats = t
+end)
+
+Section1:NewToggle("Upstats", "Start?", function(state)
+
+    if _G.stats == "Melee" then
+
+        repeat wait()
+
+            local args = {
+                [1] = "AddPoint",
+                [2] = "Melee",
+                [3] = 1
+            }
+            
+            game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+
+        until _G.stats ~= "Melee"
+
+    elseif _G.stats == "Defense" then
+
+        repeat wait()
+
+            local args = {
+                [1] = "AddPoint",
+                [2] = "Defense",
+                [3] = 1
+            }
+            
+            game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+
+        until _G.stats ~= "Defense"
+
+    elseif _G.stats == "Sword" then
+
+        repeat wait()
+
+            local args = {
+                [1] = "AddPoint",
+                [2] = "Sword",
+                [3] = 1
+            }
+            
+            game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+
+        until _G.stats ~= "Sword"
+
+    elseif _G.stats == "Gun" then
+
+        repeat wait()
+
+            local args = {
+                [1] = "AddPoint",
+                [2] = "Gun",
+                [3] = 1
+            }
+            
+            game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+
+        until _G.stats ~= "Gun"
+
+    elseif _G.stats == "Fruit" then
+
+        repeat wait()
+
+            local args = {
+                [1] = "AddPoint",
+                [2] = "Demon Fruit",
+                [3] = 1
+            }
+            
+            game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(unpack(args))
+
+        until _G.stats ~= "Fruit"
+
+    end
+
+end)
