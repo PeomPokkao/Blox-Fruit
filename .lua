@@ -10,11 +10,11 @@ function TP(Pos)
     local Distance = (Pos.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
     local Speed
     if Distance < 360 then
-        Speed = 500 -- เพิ่มความเร็วให้มากขึ้น
+        Speed = 250 -- ลดความเร็วเพื่อให้มีการเคลื่อนที่ช้าลงเมื่อระยะทางสั้น
     elseif Distance < 1000 then
-        Speed = 700 -- ปรับความเร็วให้เหมาะสมกับระยะทาง
+        Speed = 500 -- ปรับความเร็วให้เหมาะสมกับระยะทาง
     elseif Distance >= 1000 then
-        Speed = 2000 -- เพิ่มความเร็วให้มากขึ้น
+        Speed = 1000 -- เพิ่มความเร็วให้มากขึ้นเมื่อระยะทางยาว
     end
     game:GetService("TweenService"):Create(
         game.Players.LocalPlayer.Character.HumanoidRootPart,
