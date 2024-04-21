@@ -813,3 +813,12 @@ Section1:NewToggle("Upstats", "Start?", function(state)
     end
 
 end)
+
+function Attack()
+    pcall(function()
+        while wait() do
+            game:GetService'VirtualUser':CaptureController()
+            game:GetService'VirtualUser':Button1Down(Vector2.new(1280, 672))
+        end
+    end)
+end
