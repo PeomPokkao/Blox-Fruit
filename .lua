@@ -821,7 +821,7 @@ Section1:NewToggle("Upstats", "Start?", function(state)
 end)
 
 -- กำหนดค่าสำหรับกำหนดความถี่ของการคลิก (ครั้งต่อวินาที)
-local clickFrequency = 100  -- กำหนดความถี่ที่ต้องการ ตัวอย่างเช่น 10 คือ 10 ครั้งต่อวินาที
+local clickFrequency = 10  -- กำหนดความถี่ที่ต้องการ ตัวอย่างเช่น 10 คือ 10 ครั้งต่อวินาที
 
 -- ฟังก์ชันที่จะทำการคลิก
 local function autoclick()
@@ -838,14 +838,4 @@ autoclick()
 
 local UserInputService = game:GetService("UserInputService")
 
--- ฟังก์ชันสำหรับลดการสั่นของจอ
-local function ReduceScreenShake()
-    local camera = game.Workspace.CurrentCamera
-    if camera then
-        camera.CameraType = Enum.CameraType.Scriptable
-        camera.FieldOfView = 70
-        camera.Focus = CFrame.new(Vector3.new(0, 0, 0))
-    end
-end
-
-ReduceScreenShake() -- เรียกใช้ฟังก์ชันเพื่อลดการสั่นของจอ
+require(game.ReplicatedStorage.Util.CameraShaker):Stop()
