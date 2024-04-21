@@ -29,28 +29,6 @@ game.StarterGui:SetCore("SendNotification", {
     Text = "loading",
 })
 
-_G.Team = "Pirate" -- กำหนดทีม
-
-local mainGui = game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("Main")
-
--- ตรวจสอบว่า GUI มีหรือไม่และมี "ChooseTeam" ที่เห็นได้
-if mainGui and mainGui:FindFirstChild("ChooseTeam") then
-    repeat wait() until mainGui.ChooseTeam.Visible == true -- รอให้ ChooseTeam เป็น visible
-
-    -- กำหนดชื่อทีมที่ต้องการให้เป็นตัวแปร team
-    local team = _G.Team
-
-    -- ตรวจสอบชื่อทีมและเรียกใช้ Function ของ TextButton ที่เหมาะสม
-    if team == "Pirate" or team == "Marine" then
-        local button = mainGui.ChooseTeam.Container[team].Frame.ViewportFrame.TextButton
-        for _, v in pairs(getconnections(button.Activated)) do
-            v.Function()
-        end
-    else
-        warn("Invalid team specified.")
-    end
-end
-
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
 local Window = Library.CreateLib("TITLE", "LightTheme")
 local Tab1 = Window:NewTab("General")
