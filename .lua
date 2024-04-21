@@ -229,13 +229,13 @@ spawn(function()
         game:GetService("RunService").Heartbeat:Connect(function()
             if _G.AUTOFARM then
                 if not game.Workspace:FindFirstChild("LOL") then
-                    local PartNeon = Instance.new("Part")
-                    PartNeon.Name = "LOL"
-                    PartNeon.Parent = game.Workspace
-                    PartNeon.Anchored = true
-                    PartNeon.Transparency = 0
-                    PartNeon.Size = Vector3.new(30, 0.5, 30)
-                    PartNeon.Material = "Neon"
+                    local Paertaiteen = Instance.new("Part")
+                    Paertaiteen.Name = "LOL"
+                    Paertaiteen.Parent = game.Workspace
+                    Paertaiteen.Anchored = true
+                    Paertaiteen.Transparency = 0
+                    Paertaiteen.Size = Vector3.new(30, 0.5, 30)
+                    Paertaiteen.Material = "Neon"
 
                     local colors = {
                         Color3.fromRGB(255, 0, 0),
@@ -253,7 +253,7 @@ spawn(function()
                     while true do
                         wait(0.1)
                         game:GetService('TweenService'):Create(
-                            PartNeon,
+                            Paertaiteen,
                             TweenInfo.new(1, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut),
                             {Color = colors[index]}
                         ):Play()
@@ -262,11 +262,14 @@ spawn(function()
                         wait(0.5)
                     end
                 else
-                    local playerPos = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
-                    game.Workspace.LOL.CFrame = CFrame.new(playerPos.X, playerPos.Y - 3.92, playerPos.Z)
+                    local character = game.Players.LocalPlayer.Character
+                    local humanoidRootPart = character and character:FindFirstChild("HumanoidRootPart")
+                    if humanoidRootPart then
+                        game.Workspace.LOL.CFrame = CFrame.new(humanoidRootPart.Position.X, humanoidRootPart.Position.Y - 3.92, humanoidRootPart.Position.Z)
+                    end
                 end
             else
-                if not _G.AUTOFARM then
+                if _G.AUTOFARM == false then
                     local lol = game.Workspace:FindFirstChild("LOL")
                     if lol then
                         lol:Destroy()
@@ -276,6 +279,7 @@ spawn(function()
         end)
     end)
 end)
+
 
 getgenv().BringMobs = function(F, z)
     coroutine.wrap(function()
@@ -585,7 +589,11 @@ spawn(function()
                         wait(0.5)
                     end
                 else
-                    game.Workspace.LOL.CFrame = CFrame.new(game.Players.LocalPlayer.Character.HumanoidRootPart.Position.X, game.Players.LocalPlayer.Character.HumanoidRootPart.Position.Y - 3.92, game.Players.LocalPlayer.Character.HumanoidRootPart.Position.Z)
+                    local character = game.Players.LocalPlayer.Character
+                    local humanoidRootPart = character and character:FindFirstChild("HumanoidRootPart")
+                    if humanoidRootPart then
+                        game.Workspace.LOL.CFrame = CFrame.new(humanoidRootPart.Position.X, humanoidRootPart.Position.Y - 3.92, humanoidRootPart.Position.Z)
+                    end
                 end
             else
                 if _G.PartNeon == false then
@@ -598,6 +606,7 @@ spawn(function()
         end)
     end)
 end)
+
 
 if id == 2753915549 then
 
@@ -827,7 +836,11 @@ spawn(function()
                         wait(0.5)
                     end
                 else
-                    game.Workspace.LOL.CFrame = CFrame.new(game.Players.LocalPlayer.Character.HumanoidRootPart.Position.X, game.Players.LocalPlayer.Character.HumanoidRootPart.Position.Y - 3.92, game.Players.LocalPlayer.Character.HumanoidRootPart.Position.Z)
+                    local character = game.Players.LocalPlayer.Character
+                    local humanoidRootPart = character and character:FindFirstChild("HumanoidRootPart")
+                    if humanoidRootPart then
+                        game.Workspace.LOL.CFrame = CFrame.new(humanoidRootPart.Position.X, humanoidRootPart.Position.Y - 3.92, humanoidRootPart.Position.Z)
+                    end
                 end
             else
                 if _G.PartNeon2 == false then
@@ -840,6 +853,7 @@ spawn(function()
         end)
     end)
 end)
+
 
 Section1:NewDropdown("Select Upstats", "Select", {"Melee", "Defense", "Sword", "Gun", "Fruit"}, function(t)
     _G.stats = t
