@@ -9,10 +9,10 @@ local id = game.PlaceId
 function TP(P1)
     local Distance = (P1.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
     local Speed
-    if Distance < 100 then
-        Speed = 100
-    elseif Distance >= 100 then
-        Speed = 100
+    if Distance < 300 then
+        Speed = 300
+    elseif Distance >= 300 then
+        Speed = 300
     end
     
     local Tween = game:GetService("TweenService"):Create(
@@ -46,6 +46,60 @@ Section1:NewButton("RedeemCodeX2", "Click?", function()
 end)
 
 Section1:NewToggle("AuToFarm", "Start?", function(v)
+
+    _G.AUTOFARM = v
+
+    getgenv().BringMobs = function(F, z)
+        coroutine.wrap(function()
+            pcall(function()
+                if _G.AUTOFARM then
+                    for U, d in pairs(game.Workspace.Enemies:GetChildren()) do
+                        if d:FindFirstChild("Humanoid") and d:FindFirstChild("HumanoidRootPart") and (d.Name == z) then
+                            if isnetworkowner ~= nil and isnetworkowner(d:FindFirstChild("HumanoidRootPart")) then
+                                d:FindFirstChild("HumanoidRootPart").Transparency = 1
+                                d:FindFirstChild("Humanoid"):ChangeState(11)
+                                d:FindFirstChild("HumanoidRootPart").Size = Vector3.new(60, 60, 60)
+                                d:FindFirstChild("Humanoid").WalkSpeed = 0
+                                d:FindFirstChild("Humanoid").JumpPower = 0
+                                if not d:FindFirstChild("HumanoidRootPart"):FindFirstChild("BV") then
+                                    local m = Instance.new("BodyVelocity")
+                                    m.Parent = d:FindFirstChild("HumanoidRootPart")
+                                    m.Name = "BV"
+                                    m.MaxForce = Vector3.new(100000, 100000, 100000)
+                                    m.Velocity = Vector3.new(0, 0, 0)
+                                end
+                                if d:FindFirstChild("Humanoid"):FindFirstChild("Animator") then
+                                    d:FindFirstChild("Humanoid"):FindFirstChild("Animator"):Remove()
+                                end
+                                d:FindFirstChild("HumanoidRootPart").CFrame = F
+                                sethiddenproperty(game:GetService("Players").LocalPlayer, "SimulationRadius", math.huge)
+                            elseif (F.Position - d.HumanoidRootPart.Position).magnitude < 300 then
+                                d:FindFirstChild("HumanoidRootPart").Transparency = 1
+                                d:FindFirstChild("Humanoid"):ChangeState(11)
+                                d:FindFirstChild("HumanoidRootPart").Size = Vector3.new(60, 60, 60)
+                                d:FindFirstChild("Humanoid").WalkSpeed = 0
+                                d:FindFirstChild("Humanoid").JumpPower = 0
+                                if not d:FindFirstChild("HumanoidRootPart"):FindFirstChild("BV") then
+                                    local u = Instance.new("BodyVelocity")
+                                    u.Parent = d:FindFirstChild("HumanoidRootPart")
+                                    u.Name = "BV"
+                                    u.MaxForce = Vector3.new(100000, 100000, 100000)
+                                    u.Velocity = Vector3.new(0, 0, 0)
+                                end
+                                if d:FindFirstChild("Humanoid"):FindFirstChild("Animator") then
+                                    d:FindFirstChild("Humanoid"):FindFirstChild("Animator"):Remove()
+                                end
+                                d:FindFirstChild("HumanoidRootPart").CFrame = F
+                                sethiddenproperty(game:GetService("Players").LocalPlayer, "SimulationRadius", math.huge)
+                            end
+                        end
+                    end
+                end
+            end)
+        end)()
+    end
+    
+
 end)
 
 Section1:NewToggle("FastAttack", "Start?", function(vs)
