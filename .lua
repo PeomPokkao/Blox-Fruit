@@ -69,7 +69,7 @@ function CheckLevel()
         Mon = "Gorilla [Lv. 20]"
         NameQ = "JungleQuest"
         NumberQ = 2
-        CFrameQ = CFrame.new-1599.4271240234375, 36.85212707519531, 153.33627319335938)
+        CFrameQ = CFrame.new(-1599.4271240234375, 36.85212707519531, 153.33627319335938)
         return true
     elseif Level == 30 or Level <= 39 then -- Pirate
         Mon = "Pirate [Lv. 35]"
