@@ -163,7 +163,7 @@ Section1:NewToggle("AuToFarm", "Start?", function(v)
                     if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == false then
                         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1060.2091064453125, 16.455074310302734, 1547.498046875)
                         wait()
-                        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer(StartQuest,NameQ,NumberQ)
+                        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StartQuest",NameQ,NumberQ)
                     elseif game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == true then
                         for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
                             if v.Name == Mon then
@@ -197,32 +197,27 @@ Section1:NewToggle("AuToFarm", "Start?", function(v)
         end)
     end)    
     
-_G.RandomCFrame = 0
+    _G.RandomCFrame = 1
 
-spawn(function()
-    while wait() do
-        if _G.AUTOFARM then
-            repeat
-                wait()
-
+    spawn(function()
+        repeat
+            wait(0.01)
+            if _G.AUTOFARM then
                 if _G.RandomCFrame <= 1 then
-                    TP(v.HumanoidRootPart.CFrame * CFrame.new(0,20,50))
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(0, 20, 50)
                 elseif _G.RandomCFrame <= 2 then
-                    TP(v.HumanoidRootPart.CFrame * CFrame.new(50,20,0))
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(50, 20, 0)
                 elseif _G.RandomCFrame <= 3 then
-                    TP(v.HumanoidRootPart.CFrame * CFrame.new   (0,20,-50))
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(0, 20, -50)
                 elseif _G.RandomCFrame <= 4 then
-                    TP(v.HumanoidRootPart.CFrame * CFrame.new(-50,20,0))
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-50, 20, 0)
                 elseif _G.RandomCFrame <= 5 then
-                    TP(v.HumanoidRootPart.CFrame * CFrame.new(0,30,0))
-                    _G.RandomCFrame = 0
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(0, 30, 0)
                 end
-
-                _G.RandomCFrame = _G.RandomCFrame + 0.1
-            until _G.AUTOFARM == false
-        end
-    end
-end)
+                _G.RandomCFrame = _G.RandomCFrame + 1 -- เพิ่มค่า _G.RandomCFrame สำหรับการทำงานต่อไป
+            end
+        until _G.AUTOFARM == false
+    end)
 
 spawn(function()
     pcall(function()
@@ -262,17 +257,7 @@ spawn(function()
                         wait(0.5)
                     end
                 else
-                    local character = game.Players.LocalPlayer.Character
-                    local humanoidRootPart = character and character:FindFirstChild("HumanoidRootPart")
-                    if humanoidRootPart then
-                        local footPosition = humanoidRootPart.Position + Vector3.new(0, -1.5, 0) -- ตำแหน่งของเท้าเมื่อไม่ลอย
-                        local ray = Ray.new(humanoidRootPart.Position, Vector3.new(0, -3, 0) * 100) -- Raycasting ลงสู่พื้น
-                        local hit, position, normal = game.Workspace:FindPartOnRayWithIgnoreList(ray, {Paertaiteen})
-                        if hit then
-                            footPosition = position -- ตำแหน่งของเท้าเมื่อลอย
-                        end
-                        game.Workspace.LOL.CFrame = CFrame.new(footPosition)
-                    end
+                    game.Workspace.LOL.CFrame = CFrame.new(game.Players.LocalPlayer.Character.HumanoidRootPart.Position.X, game.Players.LocalPlayer.Character.HumanoidRootPart.Position.Y - 3.92, game.Players.LocalPlayer.Character.HumanoidRootPart.Position.Z)
                 end
             else
                 if _G.AUTOFARM == false then
@@ -596,17 +581,7 @@ spawn(function()
                         wait(0.5)
                     end
                 else
-                    local character = game.Players.LocalPlayer.Character
-                    local humanoidRootPart = character and character:FindFirstChild("HumanoidRootPart")
-                    if humanoidRootPart then
-                        local footPosition = humanoidRootPart.Position + Vector3.new(0, -1.5, 0) -- ตำแหน่งของเท้าเมื่อไม่ลอย
-                        local ray = Ray.new(humanoidRootPart.Position, Vector3.new(0, -3, 0) * 100) -- Raycasting ลงสู่พื้น
-                        local hit, position, normal = game.Workspace:FindPartOnRayWithIgnoreList(ray, {Paertaiteen})
-                        if hit then
-                            footPosition = position -- ตำแหน่งของเท้าเมื่อลอย
-                        end
-                        game.Workspace.LOL.CFrame = CFrame.new(footPosition)
-                    end
+                    game.Workspace.LOL.CFrame = CFrame.new(game.Players.LocalPlayer.Character.HumanoidRootPart.Position.X, game.Players.LocalPlayer.Character.HumanoidRootPart.Position.Y - 3.92, game.Players.LocalPlayer.Character.HumanoidRootPart.Position.Z)
                 end
             else
                 if _G.PartNeon == false then
@@ -851,17 +826,7 @@ spawn(function()
                         wait(0.5)
                     end
                 else
-                    local character = game.Players.LocalPlayer.Character
-                    local humanoidRootPart = character and character:FindFirstChild("HumanoidRootPart")
-                    if humanoidRootPart then
-                        local footPosition = humanoidRootPart.Position + Vector3.new(0, -1.5, 0) -- ตำแหน่งของเท้าเมื่อไม่ลอย
-                        local ray = Ray.new(humanoidRootPart.Position, Vector3.new(0, -3, 0) * 100) -- Raycasting ลงสู่พื้น
-                        local hit, position, normal = game.Workspace:FindPartOnRayWithIgnoreList(ray, {Paertaiteen})
-                        if hit then
-                            footPosition = position -- ตำแหน่งของเท้าเมื่อลอย
-                        end
-                        game.Workspace.LOL.CFrame = CFrame.new(footPosition)
-                    end
+                    game.Workspace.LOL.CFrame = CFrame.new(game.Players.LocalPlayer.Character.HumanoidRootPart.Position.X, game.Players.LocalPlayer.Character.HumanoidRootPart.Position.Y - 3.92, game.Players.LocalPlayer.Character.HumanoidRootPart.Position.Z)
                 end
             else
                 if _G.PartNeon2 == false then
