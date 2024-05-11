@@ -244,14 +244,14 @@ t2:AddButton({
 })
 
 t2:AddButton({
-	Name = "Copy Your Job Id",
+	Name = "Copy Your Server Id",
 	Callback = function()
       		print("button pressed")
   	end    
 })
 
 t2:AddTextbox({
-	Name = "Paste The Job Id Number",
+	Name = "Paste The Server Id Number",
 	Default = "",
 	TextDisappear = true,
 	Callback = function(y)
