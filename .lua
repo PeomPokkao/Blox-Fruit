@@ -126,15 +126,142 @@ spawn(function()
 end)
 
 t2:AddButton({
-	Name = "Button!",
+	Name = "Rejoin Server",
+	Callback = function()
+
+		pcall(function()
+			local ts = game:GetService("TeleportService")
+			
+			local p = game:GetService("Players").LocalPlayer
+			
+			ts:Teleport(game.PlaceId, p)
+		end)
+
+  	end    
+})
+
+t2:AddButton({
+	Name = "Hop Low Server",
+	Callback = function()
+
+		pcall(function()
+			local Http = game:GetService("HttpService")
+			local TPS = game:GetService("TeleportService")
+			local Api = "https://games.roblox.com/v1/games/"
+			
+			local _place = game.PlaceId
+			local _servers = Api.._place.."/servers/Public?sortOrder=Asc&limit=100"
+			function ListServers(cursor)
+				local Raw = game:HttpGet(_servers .. ((cursor and "&cursor="..cursor) or ""))
+				return Http:JSONDecode(Raw)
+			end
+			
+			local Server, Next; repeat
+				local Servers = ListServers(Next)
+				Server = Servers.data[1]
+				Next = Servers.nextPageCursor
+			until Server
+			
+			TPS:TeleportToPlaceInstance(_place,Server.id,game.Players.LocalPlayer)
+		end)
+
+  	end    
+})
+
+t2:AddButton({
+	Name = "Hop Server",
+	Callback = function()
+
+		pcall(function()
+			while wait() do
+				local PlaceID = game.PlaceId
+				local AllIDs = {}
+				local foundAnything = ""
+				local actualHour = os.date("!*t").hour
+				local Deleted = false
+		
+				function TPReturner()
+					local Site;
+					if foundAnything == "" then
+						Site = game.HttpService:JSONDecode(game:HttpGet('https://games.roblox.com/v1/games/' .. PlaceID .. '/servers/Public?sortOrder=Asc&limit=100'))
+					else
+						Site = game.HttpService:JSONDecode(game:HttpGet('https://games.roblox.com/v1/games/' .. PlaceID .. '/servers/Public?sortOrder=Asc&limit=100&cursor=' .. foundAnything))
+					end
+					local ID = ""
+					if Site.nextPageCursor and Site.nextPageCursor ~= "null" and Site.nextPageCursor ~= nil then
+						foundAnything = Site.nextPageCursor
+					end
+					local num = 0;
+					for i,v in pairs(Site.data) do
+						local Possible = true
+						ID = tostring(v.id)
+						if tonumber(v.maxPlayers) > tonumber(v.playing) then
+							for _,Existing in pairs(AllIDs) do
+								if num ~= 0 then
+									if ID == tostring(Existing) then
+										Possible = false
+									end
+								else
+									if tonumber(actualHour) ~= tonumber(Existing) then
+										local delFile = pcall(function()
+											-- delfile("NotSameServers.json")
+											AllIDs = {}
+											table.insert(AllIDs, actualHour)
+										end)
+									end
+								end
+								num = num + 1
+							end
+							if Possible == true then
+								table.insert(AllIDs, ID)
+								pcall(function()
+									-- writefile("NotSameServers.json", game:GetService('HttpService'):JSONEncode(AllIDs))
+									game:GetService("TeleportService"):TeleportToPlaceInstance(PlaceID, ID, game.Players.LocalPlayer)
+								end)
+								wait(.1)
+							end
+						end
+					end
+				end
+		
+				function Teleport() 
+					while wait() do
+						if foundAnything == "" then
+							break
+						end
+						pcall(function()
+							TPReturner()
+						end)
+					end
+				end
+		
+				Teleport()
+			end
+		end)
+		
+
+  	end    
+})
+
+t2:AddButton({
+	Name = "Copy Your Job Id",
 	Callback = function()
       		print("button pressed")
   	end    
 })
 
-t1:AddButton({
-	Name = "Button!",
+t2:AddTextbox({
+	Name = "Paste The Job Id Number",
+	Default = "",
+	TextDisappear = true,
+	Callback = function(y)
+		_G.svid = y
+	end	  
+})
+
+t2:AddButton({
+	Name = "Enter The Server According To The Textbox",
 	Callback = function()
-      		print("button pressed")
+		game:GetService'TeleportService':TeleportToPlaceInstance(game.PlaceId,_G.svid,game:GetService'Players'.LocalPlayer)
   	end    
 })
