@@ -1,3 +1,31 @@
+if not game:IsLoaded() then 
+    repeat 
+        game.Loaded:Wait() 
+    until game:IsLoaded() 
+end
+
+function TP(P1)
+    local Distance = (P1.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
+    local Speed
+    if Distance < 300 then
+        Speed = 300
+    elseif Distance >= 300 then
+        Speed = 300
+    end
+    
+    local Tween = game:GetService("TweenService"):Create(
+        game.Players.LocalPlayer.Character.HumanoidRootPart,
+        TweenInfo.new(Distance/Speed, Enum.EasingStyle.Linear),
+        {CFrame = P1}
+    )
+    
+    Tween:Play()
+    
+    if _G.Stop_Tween then
+        Tween:Cancel()
+    end
+end
+
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
 local Window = Library.CreateLib("UPPERCUT HUB", "LightTheme")
 local id = game.PlaceId
@@ -7,6 +35,7 @@ local t2 = Window:NewTab("Teleport")
 local Section1 = t1:NewSection("< Main >")
 local Section2 = t1:NewSection("< Secondary-Main >")
 local Section3 = t2:NewSection("< Teleport >")
+local Section4 = t2:NewSection("< Job-Id >")
 
 Section1:NewButton("ReDeemCodeX2", "กดมาดูอะไรครับ", function()
 end)
@@ -27,7 +56,7 @@ Section2:NewDropdown("Select Weapon", "กดมาดูอะไรครั�
     print(currentOption)
 end)
 
-Section1:NewToggle("AuTo Equip", "กดมาดูอะไรครับ", function(state)
+Section2:NewToggle("AuTo Equip", "กดมาดูอะไรครับ", function(state)
 
 end)
 
@@ -211,3 +240,189 @@ elseif id == 7449423635 then
     end)
 
 end
+
+Section3:NewButton("Go To First Sea", "กดมาดูอะไรครับ", function()
+    pcall(function()
+
+        while wait() do
+
+            game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TravelMain")
+
+        end
+
+    end)
+end)
+
+Section3:NewButton("Go To Second Sea", "กดมาดูอะไรครับ", function()
+    pcall(function()
+
+        while wait() do
+
+            game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TravelDressrosa")
+
+        end
+
+    end)
+end)
+
+Section3:NewButton("Go To Third Sea", "กดมาดูอะไรครับ", function()
+    pcall(function()
+
+        while wait() do
+
+            game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TravelZou")
+
+        end
+
+    end)
+end)
+
+Section3:NewButton("Rejoin", "กดมาดูอะไรครับ", function()
+
+    pcall(function()
+
+        while wait() do
+
+            local ts = game:GetService("TeleportService")
+            
+            local p = game:GetService("Players").LocalPlayer
+            
+            
+            ts:Teleport(game.PlaceId, p)
+
+        end
+
+    end)
+
+end)
+
+Section3:NewButton("Hop Server", "กดมาดูอะไรครับ", function()
+
+    pcall(function()
+
+        while wait() do
+            
+            local PlaceID = game.PlaceId
+            local AllIDs = {}
+            local foundAnything = ""
+            local actualHour = os.date("!*t").hour
+            local Deleted = false
+
+            function TPReturner()
+                local Site;
+                if foundAnything == "" then
+                   Site = game.HttpService:JSONDecode(game:HttpGet('https://games.roblox.com/v1/games/' .. PlaceID .. '/servers/Public?sortOrder=Asc&limit=100'))
+                else
+                   Site = game.HttpService:JSONDecode(game:HttpGet('https://games.roblox.com/v1/games/' .. PlaceID .. '/servers/Public?sortOrder=Asc&limit=100&cursor=' .. foundAnything))
+                end
+                local ID = ""
+                if Site.nextPageCursor and Site.nextPageCursor ~= "null" and Site.nextPageCursor ~= nil then
+                   foundAnything = Site.nextPageCursor
+                end
+                local num = 0;
+                for i,v in pairs(Site.data) do
+                   local Possible = true
+                   ID = tostring(v.id)
+                   if tonumber(v.maxPlayers) > tonumber(v.playing) then
+                         for _,Existing in pairs(AllIDs) do
+                            if num ~= 0 then
+                               if ID == tostring(Existing) then
+                                     Possible = false
+                               end
+                            else
+                               if tonumber(actualHour) ~= tonumber(Existing) then
+                                     local delFile = pcall(function()
+                                        -- delfile("NotSameServers.json")
+                                        AllIDs = {}
+                                        table.insert(AllIDs, actualHour)
+                                     end)
+                               end
+                            end
+                            num = num + 1
+                         end
+                         if Possible == true then
+                            table.insert(AllIDs, ID)
+                            wait()
+                            pcall(function()
+                               -- writefile("NotSameServers.json", game:GetService('HttpService'):JSONEncode(AllIDs))
+                               wait()
+                               game:GetService("TeleportService"):TeleportToPlaceInstance(PlaceID, ID, game.Players.LocalPlayer)
+                            end)
+                            wait(.1)
+                         end
+                   end
+                end
+            end
+
+             function Teleport() 
+                while wait() do
+                   pcall(function()
+                         TPReturner()
+                         if foundAnything ~= "" then
+                            TPReturner()
+                         end
+                   end)
+                end
+             end
+             
+            Teleport()
+
+        end
+
+    end)
+
+end)
+
+Section3:NewButton("Hop Low Server", "กดมาดูอะไรครับ", function()
+
+    pcall(function()
+
+        while wait() do
+
+            local Http = game:GetService("HttpService")
+            local TPS = game:GetService("TeleportService")
+            local Api = "https://games.roblox.com/v1/games/"
+            
+            local _place = game.PlaceId
+            local _servers = Api.._place.."/servers/Public?sortOrder=Asc&limit=100"
+            function ListServers(cursor)
+                local Raw = game:HttpGet(_servers .. ((cursor and "&cursor="..cursor) or ""))
+                return Http:JSONDecode(Raw)
+            end
+            
+            local Server, Next; repeat
+                local Servers = ListServers(Next)
+                Server = Servers.data[1]
+                Next = Servers.nextPageCursor
+            
+            until Server
+            
+            TPS:TeleportToPlaceInstance(_place,Server.id,game.Players.LocalPlayer)
+
+        end
+
+    end)
+
+end)
+
+Section4:NewButton("Copy Your Job Id", "กดมาดูอะไรครับ", function()
+
+    pcall(function()
+
+        setclipboard(game.JobId)
+
+    end)
+
+end)
+
+Section4:NewTextBox("Place your Job Id", "กดมาดูอะไรครับ", function(txt)
+
+    _G.jid = txt
+
+end)
+
+Section4:NewButton("Join Job Id", "กดมาดูอะไรครับ", function()
+
+    game:GetService'TeleportService':TeleportToPlaceInstance(game.PlaceId,_G.jid,game:GetService'Players'.LocalPlayer)
+
+end)
