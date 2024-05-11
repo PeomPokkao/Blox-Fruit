@@ -31,11 +31,13 @@ local Window = Library.CreateLib("UPPERCUT HUB", "Midnight")
 local id = game.PlaceId
 local t1 = Window:NewTab("General")
 local t2 = Window:NewTab("Teleport")
+local t3 = Window:NewTab("Visual")
 
 local Section1 = t1:NewSection("< Main >")
 local Section2 = t1:NewSection("< Secondary-Main >")
 local Section3 = t2:NewSection("< Teleport >")
 local Section4 = t2:NewSection("< Job-Id >")
+local Section5 = t3:NewSection("< Additional-Functions >")
 
 Section1:NewButton("ReDeemCodeX2", "กดมาดูอะไรครับ", function()
 end)
@@ -241,7 +243,7 @@ elseif id == 7449423635 then
 
 end
 
-Section3:NewButton("Go To First Sea", "กดมาดูอะไรครับ", function()
+Section5:NewButton("Go To First Sea", "กดมาดูอะไรครับ", function()
     pcall(function()
 
         while wait() do
@@ -253,7 +255,7 @@ Section3:NewButton("Go To First Sea", "กดมาดูอะไรครั�
     end)
 end)
 
-Section3:NewButton("Go To Second Sea", "กดมาดูอะไรครับ", function()
+Section5:NewButton("Go To Second Sea", "กดมาดูอะไรครับ", function()
     pcall(function()
 
         while wait() do
@@ -265,7 +267,7 @@ Section3:NewButton("Go To Second Sea", "กดมาดูอะไรครั�
     end)
 end)
 
-Section3:NewButton("Go To Third Sea", "กดมาดูอะไรครับ", function()
+Section5:NewButton("Go To Third Sea", "กดมาดูอะไรครับ", function()
     pcall(function()
 
         while wait() do
@@ -277,7 +279,7 @@ Section3:NewButton("Go To Third Sea", "กดมาดูอะไรครั�
     end)
 end)
 
-Section3:NewButton("Rejoin", "กดมาดูอะไรครับ", function()
+Section5:NewButton("Rejoin", "กดมาดูอะไรครับ", function()
 
     pcall(function()
 
@@ -296,7 +298,7 @@ Section3:NewButton("Rejoin", "กดมาดูอะไรครับ", funct
 
 end)
 
-Section3:NewButton("Hop Server", "กดมาดูอะไรครับ", function()
+Section5:NewButton("Hop Server", "กดมาดูอะไรครับ", function()
 
     pcall(function()
 
@@ -373,7 +375,7 @@ Section3:NewButton("Hop Server", "กดมาดูอะไรครับ", f
 
 end)
 
-Section3:NewButton("Hop Low Server", "กดมาดูอะไรครับ", function()
+Section5:NewButton("Hop Low Server", "กดมาดูอะไรครับ", function()
 
     pcall(function()
 
@@ -405,7 +407,7 @@ Section3:NewButton("Hop Low Server", "กดมาดูอะไรครับ
 
 end)
 
-Section4:NewButton("Copy Your Job Id", "กดมาดูอะไรครับ", function()
+Section3:NewButton("Copy Your Job Id", "กดมาดูอะไรครับ", function()
 
     pcall(function()
 
@@ -415,13 +417,13 @@ Section4:NewButton("Copy Your Job Id", "กดมาดูอะไรครั�
 
 end)
 
-Section4:NewTextBox("Place your Job Id", "กดมาดูอะไรครับ", function(txt)
+Section3:NewTextBox("Place your Job Id", "กดมาดูอะไรครับ", function(txt)
 
     _G.jid = txt
 
 end)
 
-Section4:NewButton("Join Job Id", "กดมาดูอะไรครับ", function()
+Section3:NewButton("Join Job Id", "กดมาดูอะไรครับ", function()
 
     game:GetService'TeleportService':TeleportToPlaceInstance(game.PlaceId,_G.jid,game:GetService'Players'.LocalPlayer)
 
