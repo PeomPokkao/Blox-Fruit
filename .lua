@@ -248,8 +248,7 @@ t2:AddButton({
 t2:AddButton({
 	Name = "Copy Your Server Id",
 	Callback = function()
-		local clipboardService = game:GetService("ClipboardService")
-		clipboardService:SetClipboard(svcavawd)
+		setclipboard(svcavawd)
   	end    
 })
 
