@@ -155,11 +155,9 @@ spawn(function()
     end)
 end)
 
-local t2 = Tab:AddSection({
+local Section = Tab:AddSection({
 	Name = "< Teleport >"
 })
-
-t2:AddLabel("------------------------------")
 
 if id == 2753915549 then
 
@@ -372,10 +370,6 @@ elseif id == 7449423635 then
 
 end
 
-t2:AddLabel("------------------------------")
-
-t2:AddLabel("------------------------------")
-
 t2:AddButton({
 	Name = "First Sea",
 	Callback = function()
@@ -521,10 +515,6 @@ t2:AddButton({
   	end    
 })
 
-t2:AddLabel("------------------------------")
-
-t2:AddLabel("------------------------------")
-
 t2:AddButton({
 	Name = "Copy Your Server Id",
 	Callback = function()
@@ -547,5 +537,3 @@ t2:AddButton({
 		game:GetService'TeleportService':TeleportToPlaceInstance(game.PlaceId,_G.svid,game:GetService'Players'.LocalPlayer)
   	end    
 })
-
-t2:AddLabel("------------------------------")
