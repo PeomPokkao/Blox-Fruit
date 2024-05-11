@@ -116,7 +116,7 @@ t1:AddToggle({
 	Default = false,
 	Callback = function(vb)
 
-		_G.FastAttack = vb
+		_G.FastAttack = true
 
 		spawn(function()
 			while _G.FastAttack do
@@ -133,6 +133,7 @@ t1:AddToggle({
 				end)
 			end
 		end)
+
 
 		local SeraphFrame = debug.getupvalues(require(game:GetService("Players").LocalPlayer.PlayerScripts:WaitForChild("CombatFramework")))[2]
 		local VirtualUser = game:GetService('VirtualUser')
@@ -174,10 +175,10 @@ t1:AddToggle({
 		end
 
 		task.spawn(function()
-			while wait(0.05) do  -- เพิ่มความเร็วในการโจมตี
+			while wait(0.05) do
 				if _G.FastAttack then
 					if SeraphFrame.activeController then
-						SeraphFrame.activeController.timeToNextAttack = 0.1  -- ปรับเป็นเวลาที่ต้องรอระหว่างการโจมตี
+						SeraphFrame.activeController.timeToNextAttack = 0.1
 						SeraphFrame.activeController.focusStart = 0
 						SeraphFrame.activeController.hitboxMagnitude = 40
 						SeraphFrame.activeController.humanoid.AutoRotate = true
@@ -189,13 +190,17 @@ t1:AddToggle({
 
 		function Boost()
 			spawn(function()
-				game:GetService("ReplicatedStorage").RigControllerEvent:FireServer("weaponChange", tostring(SeraphFuckWeapon()))
+				if SeraphFuckWeapon() then
+					game:GetService("ReplicatedStorage").RigControllerEvent:FireServer("weaponChange", tostring(SeraphFuckWeapon()))
+				end
 			end)
 		end
 
 		function Unboost()
 			spawn(function()
-				game:GetService("ReplicatedStorage").RigControllerEvent:FireServer("unequipWeapon", tostring(SeraphFuckWeapon()))
+				if SeraphFuckWeapon() then
+					game:GetService("ReplicatedStorage").RigControllerEvent:FireServer("unequipWeapon", tostring(SeraphFuckWeapon()))
+				end
 			end)
 		end
 
@@ -216,19 +221,19 @@ t1:AddToggle({
 				end)
 			end
 		end
-
+		
 		local b = tick()
 
 		spawn(function()
 			while wait(0.059) do
 				if _G.FastAttack then
-					if b - tick() > 0.75 then
+					if tick() - b > 0.75 then
 						wait(0.059)
 						b = tick()
 					end
 					pcall(function()
 						for i, v in pairs(game.Workspace.Enemies:GetChildren()) do
-							if v.Humanoid.Health > 0 then
+							if v:FindFirstChildOfClass("Humanoid") and v.Humanoid.Health > 0 then
 								if (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 40 then
 									Attack()
 									wait(0.059)
@@ -240,19 +245,19 @@ t1:AddToggle({
 				end
 			end
 		end)
-
+		
 		local k = tick()
 
 		spawn(function()
 			while wait(0.059) do
 				if _G.FastAttack then
-					if k - tick() > 0.75 then
+					if tick() - k > 0.75 then
 						wait(0.059)
 						k = tick()
 					end
 					pcall(function()
 						for i, v in pairs(game.Workspace.Enemies:GetChildren()) do
-							if v.Humanoid.Health > 0 then
+							if v:FindFirstChildOfClass("Humanoid") and v.Humanoid.Health > 0 then
 								if (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= 40 then
 									wait(0.059)
 									Unboost()
@@ -263,7 +268,7 @@ t1:AddToggle({
 				end
 			end
 		end)
-
+		
 		tjw1 = true
 
 		task.spawn(function()
@@ -286,7 +291,7 @@ t1:AddToggle({
 							d:Play(0.25, 0.25, 0.25)
 							h(i)
 							b.play = shared.cpc
-							wait(.5)
+							wait(0.5)
 							d:Stop()
 						end
 					end
@@ -319,12 +324,12 @@ t1:AddToggle({
 									a:Play(0.1, 0.1, 0.1)
 									func(Hits)
 									STOP.play = shared.cpc
-									wait(a.length * 0.5)
+									wait(a.Length * 0.5)
 									a:Stop()
 								else
 									func(Hits)
 									STOP.play = shared.cpc
-									wait(a.length * 0.5)
+									wait(a.Length * 0.5)
 									a:Stop()
 								end
 							end
@@ -333,6 +338,7 @@ t1:AddToggle({
 				end)
 			end)
 		end)
+
 
 	end    
 })
