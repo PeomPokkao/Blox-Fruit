@@ -2,8 +2,6 @@ local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shl
 
 local Player = game.Players.LocalPlayer
 
-local svcavawd = game.JobId
-
 local Window = OrionLib:MakeWindow({Name = "UPPERCUT HUB", HidePremium = false, SaveConfig = true, ConfigFolder = "Orion"})
 
 OrionLib:MakeNotification({
@@ -248,7 +246,7 @@ t2:AddButton({
 t2:AddButton({
 	Name = "Copy Your Server Id",
 	Callback = function()
-		setclipboard(svcavawd)
+		setclipboard(game.JobId)
   	end    
 })
 
