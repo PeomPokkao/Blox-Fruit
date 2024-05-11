@@ -53,7 +53,7 @@ local t3 = Window:MakeTab({
 	PremiumOnly = false
 })
 
-local t1 = Tab:AddSection({
+local Section = t1:AddSection({
 	Name = "< Main >"
 })
 
