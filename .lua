@@ -246,7 +246,8 @@ t2:AddButton({
 t2:AddButton({
 	Name = "Copy Your Server Id",
 	Callback = function()
-      		print("button pressed")
+		setclipboard(game.JobId)
+		Library:Notify('Copy : '..game.JobId, 5)
   	end    
 })
 
