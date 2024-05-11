@@ -155,7 +155,7 @@ spawn(function()
     end)
 end)
 
-local Section = Tab:AddSection({
+local Section = t2:AddSection({
 	Name = "< Teleport >"
 })
 
