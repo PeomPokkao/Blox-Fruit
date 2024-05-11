@@ -27,7 +27,7 @@ function TP(P1)
 end
 
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
-local Window = Library.CreateLib("UPPERCUT HUB", "LightTheme")
+local Window = Library.CreateLib("UPPERCUT HUB", "Midnight")
 local id = game.PlaceId
 local t1 = Window:NewTab("General")
 local t2 = Window:NewTab("Teleport")
