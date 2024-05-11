@@ -1,3 +1,25 @@
+function TP(P1)
+    local Distance = (P1.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
+    local Speed
+    if Distance < 300 then
+        Speed = 300
+    elseif Distance >= 300 then
+        Speed = 300
+    end
+    
+    local Tween = game:GetService("TweenService"):Create(
+        game.Players.LocalPlayer.Character.HumanoidRootPart,
+        TweenInfo.new(Distance/Speed, Enum.EasingStyle.Linear),
+        {CFrame = P1}
+    )
+    
+    Tween:Play()
+    
+    if _G.Stop_Tween then
+        Tween:Cancel()
+    end
+end
+
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
 
 local Player = game.Players.LocalPlayer
