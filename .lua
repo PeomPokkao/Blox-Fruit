@@ -36,7 +36,7 @@ local t3 = Window:NewTab("Visual")
 local Section1 = t1:NewSection("< Main >")
 local Section2 = t1:NewSection("< Secondary-Main >")
 local Section3 = t2:NewSection("< Teleport >")
-local Section4 = t2:NewSection("< Job-Id >")
+local Section4 = t3:NewSection("< Job-Id >")
 local Section5 = t3:NewSection("< Additional-Functions >")
 
 Section1:NewButton("ReDeemCodeX2", "กดมาดูอะไรครับ", function()
@@ -243,7 +243,7 @@ elseif id == 7449423635 then
 
 end
 
-Section5:NewButton("Go To First Sea", "กดมาดูอะไรครับ", function()
+Section3:NewButton("Go To First Sea", "กดมาดูอะไรครับ", function()
     pcall(function()
 
         while wait() do
@@ -255,7 +255,7 @@ Section5:NewButton("Go To First Sea", "กดมาดูอะไรครั�
     end)
 end)
 
-Section5:NewButton("Go To Second Sea", "กดมาดูอะไรครับ", function()
+Section3:NewButton("Go To Second Sea", "กดมาดูอะไรครับ", function()
     pcall(function()
 
         while wait() do
@@ -267,7 +267,7 @@ Section5:NewButton("Go To Second Sea", "กดมาดูอะไรครั�
     end)
 end)
 
-Section5:NewButton("Go To Third Sea", "กดมาดูอะไรครับ", function()
+Section3:NewButton("Go To Third Sea", "กดมาดูอะไรครับ", function()
     pcall(function()
 
         while wait() do
@@ -407,7 +407,7 @@ Section5:NewButton("Hop Low Server", "กดมาดูอะไรครับ
 
 end)
 
-Section3:NewButton("Copy Your Job Id", "กดมาดูอะไรครับ", function()
+Section4:NewButton("Copy Your Job Id", "กดมาดูอะไรครับ", function()
 
     pcall(function()
 
@@ -417,14 +417,18 @@ Section3:NewButton("Copy Your Job Id", "กดมาดูอะไรครั�
 
 end)
 
-Section3:NewTextBox("Place your Job Id", "กดมาดูอะไรครับ", function(txt)
+Section4:NewTextBox("Place your Job Id", "กดมาดูอะไรครับ", function(txt)
 
     _G.jid = txt
 
 end)
 
-Section3:NewButton("Join Job Id", "กดมาดูอะไรครับ", function()
+Section4:NewButton("Join Job Id", "กดมาดูอะไรครับ", function()
 
-    game:GetService'TeleportService':TeleportToPlaceInstance(game.PlaceId,_G.jid,game:GetService'Players'.LocalPlayer)
+    pcall(function()
+
+        game:GetService'TeleportService':TeleportToPlaceInstance(game.PlaceId,_G.jid,game:GetService'Players'.LocalPlayer)
+
+    end)
 
 end)
