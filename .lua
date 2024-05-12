@@ -427,7 +427,7 @@ Section4:NewButton("Join Job Id", "กดมาดูอะไรครับ", 
 
     pcall(function()
 
-        game:GetService'TeleportService':TeleportToPlaceInstance(game.PlaceId,_G.jid,game:GetService'Players'.LocalPlayer)
+        game:GetService("ReplicatedStorage").__ServerBrowser:InvokeServer("teleport", _G.jid)
 
     end)
 
